@@ -73,7 +73,19 @@ The server uses UTC, with network time synchronization active.
   upgrades. Ubuntu's update sources remain enabled.
 
 ## Setup evidence
-Screenshots will be added after reviewing them for sensitive information.
+
+### Wazuh services running
+Verified that the Wazuh manager, indexer, and dashboard services
+all report `active`.
+
+![Wazuh services reporting active](screenshots/wazuh-services-active.png)
+
+### Initial dashboard access
+Successfully accessed the Wazuh dashboard from Windows.
+At this stage, no endpoint agents had been registered.
+The displayed alert counts have not yet been investigated.
+
+![Initial Wazuh dashboard](screenshots/wazuh-dashboard-initial.png)
 
 Planned evidence:
 - Terminal output showing all three Wazuh services as `active`.
