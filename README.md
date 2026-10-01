@@ -1,19 +1,21 @@
 # SOC & Incident Response Lab
 
 ## Project status
-**In progress — Ubuntu server installed and SSH access configured.**
+**In progress — Wazuh installed and dashboard access verified.**
 
-The virtual machine is running in VMware Workstation. Wazuh has
-not been installed yet. The next step is to verify available
-resources and time synchronization before installing Wazuh.
+Completed the Ubuntu Server setup and installed the Wazuh server,
+indexer, and dashboard. Verified that all three services are active
+and successfully accessed the dashboard from Windows.
+
+Next: connect the first monitored endpoint and verify log collection.
 
 ## Overview
 This project documents my progress building a security operations
 lab to collect security logs, investigate suspicious activity,
 and practice incident response.
 
-The planned monitoring platform is Wazuh. Investigation scenarios
-will include failed logins and changes to monitored files.
+The monitoring platform is Wazuh. Planned investigation scenarios
+include failed logins, changes to monitored files, and service discovery.
 
 ## Learning goals
 - Understand how security logs are collected and analyzed.
@@ -34,16 +36,20 @@ will include failed logins and changes to monitored files.
 | Network mode | NAT |
 | Remote administration | SSH from Windows Terminal |
 
-Available storage and memory will be checked before installing
-the monitoring platform.
+Before installing Wazuh, verified CPU allocation, available memory,
+disk space, and clock synchronization. Ubuntu reported approximately
+40 GB of available disk space, and Windows reported 64.4 GB free
+on C:. These measurements were taken before the Wazuh installation.
+
+The server uses UTC, with network time synchronization active.
 
 ## Tools and their purpose
 | Tool | Purpose | Status |
 | --- | --- | --- |
 | VMware Workstation | Run the lab virtual machine | Configured |
-| Ubuntu Server | Host the planned Wazuh installation | Installed |
+| Ubuntu Server | Host Wazuh's central components | Installed |
 | OpenSSH | Administer Ubuntu from Windows Terminal | Connection verified |
-| Wazuh | Collect logs and investigate security alerts | Planned |
+| Wazuh | Collect and analyze security events | Installed; dashboard access verified |
 | Monitored endpoint | Generate activity for investigation | Pending selection |
 | Nmap | Discover ports and services within the lab | Planned |
 | GitHub | Maintain documentation and version history | In use |
@@ -56,8 +62,22 @@ the monitoring platform.
 - Compared the server's SSH host fingerprint before accepting
   the first connection.
 - Successfully connected from Windows Terminal.
-- Ran Ubuntu package update and upgrade checks. At that time,
-  nine package upgrades were deferred due to Ubuntu's phased rollout.
+- Checked Ubuntu package updates and applied available upgrades.
+- Restarted Ubuntu when a reboot was required.
+- Verified resources, available storage, and time synchronization.
+- Installed the Wazuh server, indexer, and dashboard using the
+  official installation assistant.
+- Verified that all three Wazuh services report `active`.
+- Successfully logged in to the Wazuh dashboard.
+- Disabled the Wazuh package repository to prevent accidental
+  upgrades. Ubuntu's update sources remain enabled.
+
+## Setup evidence
+Screenshots will be added after reviewing them for sensitive information.
+
+Planned evidence:
+- Terminal output showing all three Wazuh services as `active`.
+- Initial Wazuh dashboard showing successful access.
 
 ## Planned investigation scenarios
 These scenarios have not been performed yet.
@@ -79,6 +99,9 @@ Published documentation will exclude passwords, access tokens,
 private keys, and sensitive personal information. Screenshots
 and logs will be reviewed before publication.
 
+Generated installation files containing credentials, including
+`wazuh-install-files.tar`, will not be uploaded to this repository.
+
 ## Progress
 - [x] Create the GitHub repository.
 - [x] Write the initial project overview.
@@ -86,9 +109,11 @@ and logs will be reviewed before publication.
 - [x] Install Ubuntu Server.
 - [x] Verify SSH access from Windows.
 - [x] Check Ubuntu package updates.
-- [ ] Verify resources, available storage, and time synchronization.
+- [x] Verify resources, available storage, and time synchronization.
+- [x] Install Wazuh server, indexer, and dashboard.
+- [x] Verify Wazuh services and dashboard access.
+- [x] Disable the Wazuh package repository to prevent accidental upgrades.
 - [ ] Document the server setup with reviewed screenshots.
-- [ ] Install and configure Wazuh.
 - [ ] Connect an endpoint and verify log collection.
 - [ ] Run and investigate test scenarios.
 - [ ] Write incident reports.
@@ -101,5 +126,13 @@ and logs will be reviewed before publication.
 - `apt update` refreshes package information; `apt upgrade`
   installs eligible package updates.
 - Ubuntu may temporarily defer some updates through phased rollouts.
-## Findings and lessons learned
-To be added as the lab is built and tested.
+- Accurate timestamps help correlate events during investigations.
+- Wazuh uses separate components for event analysis, indexing,
+  and dashboard access.
+- Running services and successful dashboard access verify the
+  initial installation; endpoint monitoring still needs to be tested.
+
+## Investigation findings
+No controlled investigation scenarios have been completed yet.
+Initial dashboard alert counts have not been investigated and
+are not being presented as confirmed security incidents.
