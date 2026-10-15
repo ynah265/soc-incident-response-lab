@@ -125,8 +125,8 @@ Generated installation files containing credentials, including
 - [x] Install Wazuh server, indexer, and dashboard.
 - [x] Verify Wazuh services and dashboard access.
 - [x] Disable the Wazuh package repository to prevent accidental upgrades.
-- [ ] Document the server setup with reviewed screenshots.
-- [ ] Connect an endpoint and verify log collection.
+- [x] Document the server setup with reviewed screenshots.
+- [x] Connect an endpoint and verify log collection.
 - [ ] Run and investigate test scenarios.
 - [ ] Write incident reports.
 - [ ] Review and finalize the project documentation.
